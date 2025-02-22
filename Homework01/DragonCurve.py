@@ -18,7 +18,7 @@ def compute_dragon_points(turns, step=1.0):  # Function to compute the Dragon Cu
 
     return np.array(points)  # Converting the list of points to a NumPy array for efficient computation
 
-iterations = 10  # Number of iterations to generate the Dragon Curve
+iterations = 20  # Number of iterations to generate the Dragon Curve
 
 turns = []  # Starting with no turns (just a single segment)
 
