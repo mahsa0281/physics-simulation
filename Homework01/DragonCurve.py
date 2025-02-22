@@ -33,7 +33,7 @@ ax.set_yticks([])  # Removing y-axis ticks for a cleaner visualization
 ax.set_title("Iteration 0")  # Setting the title for the first iteration
 
 plt.draw()  # Rendering the initial plot
-plt.waitforbuttonpress()  # Wait for user input to proceed to the next iteration
+plt.waitforbuttonpress()  # Waiting for user input to proceed to the next iteration
 
 for i in range(1, iterations + 1):  # Looping through the number of iterations
     turns = iterate_dragon(turns)  # Generating the new sequence of turns
