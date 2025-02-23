@@ -32,7 +32,7 @@ for r, row in enumerate(triangle): # Looping through each row of Pascal’s Tria
     start = num_rows - r - 1  # Ensuring that each row starts at the correct position to be centered
     for i, value in enumerate(row): # Looping through each number in the row
         col = start + 2 * i  # Computing the column index for the i-th number in the row
-        if value % 2 == 1:
+        if value % 2 == 1: # Checking whether the number is odd or even
             image[r, col] = blue
         else:
             image[r, col] = red
