@@ -20,9 +20,9 @@ def julia_set(width, height, c, xlim=(-1.7, 1.7), ylim=(-1.7,1.7), max_iter=350)
 width, height = 1000, 1000    # Defining the image resolution 
 max_iter = 350    # Maximum iterations to track divergence 
  
-c_values = [(-0.8 + 0.16j), (-0.4 + 0.6j), (0.355 + 0.355j), (-0.70176 - 0.3842j)]    # Complex values defining the Julia Sets 
+c_values = [(-0.8 + 0.16j), (-0.4 + 0.6j), (0.381 + 0.321j), (-0.711 - 0.3002j)]    # Complex values defining the Julia Sets 
 
-titles = [r"$c = -0.8 + 0.16i$", r"$c = -0.4 + 0.6i$", r"$c = 0.355 + 0.355i$", r"$c = -0.70176 - 0.3842i$"] # Labeling the images
+titles = [r"$c = -0.8 + 0.16i$", r"$c = -0.4 + 0.6i$", r"$c = 0.381 + 0.321i$", r"$c = -0.711 - 0.3002i$"] # Labeling the images
 
 for c, title in zip(c_values, titles):   # Looping through each c value (and it's corresponding title) and generating Julia Sets 
     julia = julia_set(width, height, c, max_iter=max_iter)    # Calling the julia_set() function to compute the fractal
