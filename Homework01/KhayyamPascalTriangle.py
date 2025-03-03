@@ -23,7 +23,6 @@ triangle = generate_pascals_triangle(num_rows) # Calling the function to generat
 width = 2 * num_rows - 1 # Width: Each row has 2 * num_rows - 1 columns
 image = np.ones((num_rows, width, 3))  # Creating a NumPy array to store pixel colors (height, width, RGB)
 
-
 red = np.array([1, 0, 0]) # Defining colours in RGB format 
 blue = np.array([0, 0, 1]) # Defining colours in RGB format
 
