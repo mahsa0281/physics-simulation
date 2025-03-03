@@ -33,7 +33,7 @@ for _ in range(num_points):    # Each loop calculating a new point for the fern
     points_y.append(y)   # Storing the new points 
 
 plt.figure(figsize=(6, 10))    # Creating the plot 
-plt.scatter(points_x, points_y, s=0.1, color="black")    # Plotting all points as dots (size 0.1, black)
+plt.scatter(points_x, points_y, s=0.1, color="green")    # Plotting all points as dots (size 0.1, black)
 plt.axis("off")    # Removing the axis 
 plt.title("Barnsley Fern")    # Adding a title 
 plt.show()    # Displaying the final fern image 
