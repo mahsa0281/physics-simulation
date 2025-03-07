@@ -5,7 +5,7 @@ import random     # Python's random module, used for random choices
 
 L = 200     # System size in 1D (200 columns where particles can be deposited)
 num_layers = 3     # Number of deposition layers
-steps_per_layer = 50 * L     # Ensuring that on average, each of the L sites receives 50 deposition events per layer
+steps_per_layer = 500 * L     # Ensuring that on average, each of the L sites receives 50 deposition events per layer
 T = num_layers * steps_per_layer     # Total deposition steps across all layers
 record_interval = 1000     # Frequency for recording data (e.g., every 1000 deposition steps)
 
