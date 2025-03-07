@@ -52,5 +52,5 @@ plt.imshow(
 )
 plt.xlabel('X (horizontal sites)')
 plt.ylabel('Y (height)')
-plt.title('Side Deposition with 3 Distinct Colors by Batch')
+plt.title('Side Deposition')
 plt.show()
