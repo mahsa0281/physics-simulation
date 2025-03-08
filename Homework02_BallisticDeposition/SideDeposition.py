@@ -10,8 +10,6 @@ deposit_grid = np.zeros((H, L), dtype=int)
 
 neighbors = [
     (0, -1),    # below
-    (-1, -1),   # below-left
-    (1, -1),    # below-right
     (-1, 0),    # left
     (1, 0)      # right
 ]

@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 L = 200        # Width
 H = 100        # Height
-N = 9000       # Number of falling particles
+N = 90000       # Number of falling particles
 
 grid = np.zeros((H, L), dtype=int)
 
@@ -17,8 +17,6 @@ grid[seed_y, seed_x] = 1
 neighbors = [
     (0, 0),    # the cell itself
     (0, -1),   # below
-    (-1, -1),  # below-left
-    (1, -1),   # below-right
     (-1, 0),   # left
     (1, 0)     # right
 ]
