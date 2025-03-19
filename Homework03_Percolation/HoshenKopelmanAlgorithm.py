@@ -23,8 +23,8 @@ def flood_fill(lattice, labels, i, j, cluster_id):
 
 def label_clusters(lattice):
     L = lattice.shape[0]
-    labels = np.zeros((L, L), dtype=int)
-    cluster_id = 1
+    labels = np.zeros((L, L), dtype=int)  
+    cluster_id = 1  
     for i in range(L):
         for j in range(L):
             if lattice[i, j] and labels[i, j] == 0:
@@ -47,7 +47,7 @@ def display_clusters(labels, percolating):
     colors = ['black']
     for label in range(1, max_label + 1):
         if label in percolating:
-            colors.append('yellow')
+            colors.append('yellow')  
         else:
             colors.append(cm.nipy_spectral(label / max_label))
     
@@ -63,7 +63,7 @@ def display_clusters(labels, percolating):
 def main():
     L = int(input("Lattice size L: "))
     p = float(input("Probability p (between 0 and 1): "))
-
+    
     start_time = time.time()
     
     lattice = generate_lattice(L, p)
