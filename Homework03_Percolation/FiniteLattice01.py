@@ -55,7 +55,7 @@ def run_simulation(L, p, num_runs=100):
     return count / num_runs
 
 def main():
-    L_values = [10, 20, 40, 80, 160]
+    L_values = [10, 20, 40]
     delta_p = 0.05
     p_values = np.arange(0, 1 + delta_p, delta_p)
     results = {L: [] for L in L_values}
@@ -68,7 +68,7 @@ def main():
             print(f"  p = {p:.2f}, Q(p) = {Q:.2f}")
     
     plt.figure(figsize=(8, 6))
-    for L in [10, 20, 40, 80, 160]:
+    for L in [10, 20, 40]:
         plt.plot(p_values, results[L], marker='o', label=f"L = {L}")
     
     plt.xlabel("Bond Probability p")
