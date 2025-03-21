@@ -3,22 +3,19 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 
 def generate_lattice(L, p):
- 
     lattice = np.random.rand(L, L) < p
     return lattice
 
-def display_lattice(lattice):
-
+def display_lattice(lattice, L, p):
     cmap = ListedColormap(["darkblue", "yellow"])
     
     plt.figure(figsize=(6, 6))
     plt.imshow(lattice, cmap=cmap, origin='upper')
-    plt.title("Percolation Lattice")
+    plt.title(f"Percolation Lattice: L = {L}, p = {p}")
     plt.axis('off')
     plt.show()
 
 def has_spanning_cluster(lattice):
- 
     L = lattice.shape[0]
     visited = np.zeros_like(lattice, dtype=bool)
     
@@ -50,4 +47,4 @@ if __name__ == "__main__":
     else:
         print("0")
     
-    display_lattice(lattice)
+    display_lattice(lattice, L, p)
