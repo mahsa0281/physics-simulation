@@ -40,8 +40,7 @@ def detect_percolation(labels):
     percolating = left_labels & right_labels
     return percolating
 
-def display_clusters(labels, percolating):
-    L = labels.shape[0]
+def display_clusters(labels, percolating, L, p):
     max_label = labels.max()
 
     colors = ['black']
@@ -56,7 +55,7 @@ def display_clusters(labels, percolating):
 
     plt.figure(figsize=(6, 6))
     plt.imshow(labels, cmap=cmap, norm=norm, origin='upper')
-    plt.title("Lattice Clusters (Yellow = Percolating)")
+    plt.title(f"Lattice Clusters (L = {L}, p = {p}) (Yellow = Percolating)")
     plt.axis('off')
     plt.show()
 
@@ -81,7 +80,7 @@ def main():
     elapsed_time = end_time - start_time
     print(f"Elapsed time for computation: {elapsed_time:.4f} seconds")
     
-    display_clusters(labels, percolating_clusters)
+    display_clusters(labels, percolating_clusters, L, p)
 
 if __name__ == "__main__":
     main()
