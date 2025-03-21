@@ -52,10 +52,13 @@ def union(parent, rank, size, sum_x, sum_y, sum_x2, sum_y2, i, j):
         sum_y2[root_j] = 0
 
 def simulate_bond_percolation(L, p):
+  
     N = L * L
+    
     parent = np.arange(N)
     rank = np.zeros(N, dtype=int)
     size = np.ones(N, dtype=int)  
+    
     sum_x  = np.zeros(N, dtype=float)
     sum_y  = np.zeros(N, dtype=float)
     sum_x2 = np.zeros(N, dtype=float)
@@ -78,7 +81,7 @@ def simulate_bond_percolation(L, p):
                 if np.random.rand() < p:  
                     union(parent, rank, size, sum_x, sum_y, sum_x2, sum_y2, index(r, c), index(r, c+1))
             if r < L - 1:
-                if np.random.rand() < p:  
+                if np.random.rand() < p: 
                     union(parent, rank, size, sum_x, sum_y, sum_x2, sum_y2, index(r, c), index(r+1, c))
     
     left_roots  = set()
@@ -99,11 +102,12 @@ def simulate_bond_percolation(L, p):
             if S <= 1:
                 Rg_values.append(0.0)
                 continue
-            
+
             sumx  = sum_x[root]
             sumy  = sum_y[root]
             sumx2 = sum_x2[root]
             sumy2 = sum_y2[root]
+            
             x_c = sumx / S
             y_c = sumy / S
             mean_r2 = (sumx2 + sumy2) / S
@@ -114,7 +118,8 @@ def simulate_bond_percolation(L, p):
     
     if len(Rg_values) == 0:
         return 0.0
-        xi = np.mean(Rg_values)
+    
+    xi = np.mean(Rg_values)
     return xi
 
 def run_simulation(L, p, num_runs=100):
@@ -124,7 +129,7 @@ def run_simulation(L, p, num_runs=100):
     return xi_sum / num_runs
 
 def main():
-    L_values = [10, 20, 40, 80]
+    L_values = [10, 20, 40]
     
     delta_p = 0.05
     p_values = np.arange(0, 1 + delta_p, delta_p)
@@ -134,12 +139,12 @@ def main():
     for L in L_values:
         print(f"\nRunning correlation-length simulations for L = {L}")
         for p in p_values:
-            xi_avg = run_simulation(L, p, num_runs=50) 
+            xi_avg = run_simulation(L, p, num_runs=50)  
             results[L].append(xi_avg)
             print(f"  p = {p:.2f}, xi(p) = {xi_avg:.3f}")
     
     plt.figure(figsize=(8,6))
-    for L in [10, 20, 40, 80]:
+    for L in [10, 20, 40]:
         plt.plot(p_values, results[L], marker='o', label=f"L = {L}")
     
     plt.xlabel("Bond Probability p")
