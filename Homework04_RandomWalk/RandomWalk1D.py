@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 p = 0.5
 q = 1 - p
-max_steps = 500
+max_steps = 100
 
 def step_function(prob):
     rnd = np.random.rand()
@@ -60,4 +60,5 @@ plt.xlabel('Number of Steps (n)')
 plt.ylabel(r'$\langle x(t)\rangle \text{ and } \sigma^2$')
 plt.legend()
 plt.title("1D Random Walk: Empirical vs. Theoretical Results")
+plt.text(0.05 * max_steps, 0.95 * max(variances), f'p = {p}', fontsize=12, bbox=dict(facecolor='white', alpha=0.5))
 plt.show()
