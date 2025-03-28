@@ -32,7 +32,7 @@ cluster[center_y, center_x] = 1
 min_x, max_x = center_x, center_x
 min_y, max_y = center_y, center_y
 
-NUM_PARTICLES = 1000  
+NUM_PARTICLES = 2000  
 MARGIN = 250         
 current_id = 2      
 
@@ -83,5 +83,4 @@ im = ax.imshow(masked_cluster, origin='lower',
 ax.set_title("2D DLA (Single Central Seed, Circular Boundary)")
 ax.set_xlabel("X")
 ax.set_ylabel("Y")
-plt.colorbar(im, ax=ax, label="Particle Sticking Order")
 plt.show()

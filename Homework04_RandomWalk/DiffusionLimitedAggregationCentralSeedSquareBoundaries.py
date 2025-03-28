@@ -41,8 +41,8 @@ cluster[center_y, center_x] = 1
 min_x, max_x = center_x, center_x
 min_y, max_y = center_y, center_y
 
-NUM_PARTICLES = 1000   
-MARGIN = 400           
+NUM_PARTICLES = 2000   
+MARGIN = 250           
 current_id = 2        
 
 for _ in range(NUM_PARTICLES):
