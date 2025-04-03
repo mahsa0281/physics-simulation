@@ -2,7 +2,7 @@ import numpy as numpy
 import random
 import matplotlib.pyplot as plt
 
-N = 100 
+N = 10000
 results = [random.randint(0, 9) for _ in range(N)]
 
 frequencies = [results.count(i) for i in range(10)]
