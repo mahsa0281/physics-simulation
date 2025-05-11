@@ -1,33 +1,33 @@
-import numpy as np   # NumPy libarary, used for efficient numerical operations
-import matplotlib.pyplot as plt   # Matplotlib, used for visualisation
-from scipy import stats   # stats module from the SciPy library, providing statistical functions 
+import numpy as np  
+import matplotlib.pyplot as plt  
+from scipy import stats  
 
-L = 200    # System size in 1D (200 columns where particles can be deposited)
-num_layers = 3    # Number of deposition layers
-steps_per_layer = 50 * L    # Ensuring that on average, each of the L sites, receives 50 deposition events per layer 
-T = num_layers * steps_per_layer    # Calculating the total number of deposition steps across all layers 
-record_interval = 1000    # Setting the frequency for recording data (such as average height and roughness)
+L = 200  
+num_layers = 3   
+steps_per_layer = 50 * L   
+T = num_layers * steps_per_layer 
+record_interval = 1000    
 
-heights = np.zeros(L, dtype=int)    # Creating an array of zerros with length L to represent the initial height (zero particles) at each position along the substrate
-snapshots = [np.zeros(L, dtype=int)]  # Initialising a list to store snapshots (copies) of the height profile 
+heights = np.zeros(L, dtype=int)    
+snapshots = [np.zeros(L, dtype=int)] 
 
-times = []    # Setting up an empty list to store deposition steps at which data is recorded
-avg_heights_over_time = []    # Setting up an empty list to store the average height of the substrate at each recorded time
-roughness_over_time = []    # Setting up an empty list to store the standard deviation (roughness) at each recording 
+times = []   
+avg_heights_over_time = []  
+roughness_over_time = []  
 
-t = 0    # Initialise a counter t to track the number of deposition steps 
-for layer in range(num_layers):    # Beginning a loop to iterate over each deposition layer (3 iterations in total)
-    for _ in range(steps_per_layer):    # Beginning a loop to iterate for the number of steps (10,000)
-        i = np.random.randint(0, L)    # Randomly select an index i (between 0 and L-1), representing the position on the substrate 
-        heights[i] += 1    # Increasing the height at the selected position by 1 (simulating the deposition of a particle)
-        t += 1    # Increasing the time step counter by 1
+t = 0   
+for layer in range(num_layers):  
+    for _ in range(steps_per_layer):  
+        i = np.random.randint(0, L)   
+        heights[i] += 1  
+        t += 1    
         
-        if t % record_interval == 0:    # Checking if the current step is a multiple of the record interval (1000, 2000, etc.) 
-            times.append(t)    # Appending the current time step t to the time list 
-            avg_heights_over_time.append(np.mean(heights))    # Computes the average height (mean of the heights array) and appends it to the list avg_heights_over_time
-            roughness_over_time.append(np.std(heights))    # Calculates the standard deviation of the heights array (as a measure of roughness) and appends it to roughness_over_time
+        if t % record_interval == 0: 
+            times.append(t)    
+            avg_heights_over_time.append(np.mean(heights))   
+            roughness_over_time.append(np.std(heights))    
     
-    snapshots.append(heights.copy())    # Saving a copy of the current heights array in the snapshot list, after completing a full layer of deposition (representing the state of the substrate after that layer)
+    snapshots.append(heights.copy())    
 
 plt.figure(figsize=(8, 5))    # Creating a new figure for plotting with a size of 8 inches by 5 inches
 x = np.arange(L)    # Creating an array of positions from 0 to L-1 (x-axis values for the substrate positions)
