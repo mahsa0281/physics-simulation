@@ -1,46 +1,46 @@
-import numpy as np    # NumPy library, used for efficient numerical operations
-import matplotlib.pyplot as plt    # Matplotlib, used for visualisation
-from scipy import stats     # stats module from SciPy, providing statistical functions
-import random     # Python's random module, used for random choices
+import numpy as np   
+import matplotlib.pyplot as plt    
+from scipy import stats    
+import random    
 
-L = 200     # System size in 1D (200 columns where particles can be deposited)
-num_layers = 3     # Number of deposition layers
-steps_per_layer = 500 * L     # Ensuring that on average, each of the L sites receives 50 deposition events per layer
-T = num_layers * steps_per_layer     # Total deposition steps across all layers
-record_interval = 1000     # Frequency for recording data (e.g., every 1000 deposition steps)
+L = 200    
+num_layers = 3   
+steps_per_layer = 500 * L    
+T = num_layers * steps_per_layer     
+record_interval = 1000   
 
-heights = np.zeros(L, dtype=int)     # Creating an array of zeros of length L for initial heights (zero particles)
-snapshots = [np.zeros(L, dtype=int)]     # Initialising a list to store snapshots of the height profile (starting with the initial state)
+heights = np.zeros(L, dtype=int)   
+snapshots = [np.zeros(L, dtype=int)]   
 
-times = []     # Creating an list to store the deposition steps at which data is recorded
-avg_heights_over_time = []    # Creating an empty list to store the average height at each recorded time
-roughness_over_time = []     # Creating an empty list to store the roughness (standard deviation of heights) at each recording
+times = []     
+avg_heights_over_time = []   
+roughness_over_time = []   
 
-t = 0    # Initialising a counter t to track the number of deposition steps
+t = 0   
 
-for layer in range(num_layers):     # Looping over each deposition layer (3 layers)
-    for _ in range(steps_per_layer):     # Looping for the specified number of deposition steps per layer
-        i = np.random.randint(0, L)    # Randomly choose a deposition site (index between 0 and L-1)
+for layer in range(num_layers):     
+    for _ in range(steps_per_layer):    
+        i = np.random.randint(0, L)   
         
-        left_index = (i - 1) % L    # Applying periodic boundary conditions: Left neighbour (wraps around: index -1 becomes L-1)
-        right_index = (i + 1) % L    # Applying periodic boundary conditions: Right neighbour (wraps around: index L becomes 0)
+        left_index = (i - 1) % L    
+        right_index = (i + 1) % L 
         
-        if heights[left_index] < heights[i] or heights[right_index] < heights[i]:     # Checking if either neighbour is lower than the chosen site
-            left_height = heights[left_index]     # Getting the height of the left neighbour
-            right_height = heights[right_index]     # Getting the height of the left neighbour
+        if heights[left_index] < heights[i] or heights[right_index] < heights[i]:    
+            left_height = heights[left_index]     
+            right_height = heights[right_index]  
             
-            if left_height < right_height:    # If the left neighbour is lower than the right neighbour,
-                deposit_index = left_index     # Deposit particle at the left neighbour site
-            elif right_height < left_height:    # If the right neighbour is lower than the left neighbour,
-                deposit_index = right_index     # Deposit particle at the right neighbour site
-            else:    # If both neighbours are equally lower than the chosen site,
-                deposit_index = random.choice([left_index, right_index])     # Randomly choose one of them
+            if left_height < right_height:   
+                deposit_index = left_index   
+            elif right_height < left_height: 
+                deposit_index = right_index     
+            else:   
+                deposit_index = random.choice([left_index, right_index])     
 
-            heights[deposit_index] += 1     # Deposit the particle at the chosen neighbour site
-        else:     # If neither neighbour is lower,
-            heights[i] += 1     # Deposit at the originally chosen site
+            heights[deposit_index] += 1     
+        else:     
+            heights[i] += 1   
         
-        t += 1     # Increasing the deposition step counter
+        t += 1    
         
         if t % record_interval == 0:     # Checking if the current step t is a multiple of the record interval
             times.append(t)     # Appending the current time step t to the times list
