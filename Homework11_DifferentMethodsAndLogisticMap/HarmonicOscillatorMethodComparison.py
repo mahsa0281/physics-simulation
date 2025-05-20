@@ -100,7 +100,7 @@ def beeman(x0, v0, h, tf):
     for n in range(1, len(t)-1):
         x_pred = x[n] + v[n]*h + (4*a_n - a_nm1)*h**2/6
         a_pred = f(x_pred)          
-
+        
         v[n+1] = v[n] + h*(2*a_pred + 5*a_n - a_nm1)/6
         x[n+1] = x_pred
 
@@ -137,6 +137,40 @@ if __name__ == "__main__":
         plt.title(f'Displacement vs time   (h = {h})')
         plt.xlabel('t')
         plt.ylabel('x(t)')
+        plt.legend(fontsize=8)
+        plt.grid(alpha=0.3)
+        plt.tight_layout()
+        plt.show()
+
+        plt.figure(figsize=(6, 4))
+        plt.plot(xe, ve, 'b.', ms=2, label='Euler')
+        plt.plot(xk, vk, 'g.', ms=2, label='Euler-Cromer')
+        plt.plot(xl, vl, 'y.', ms=2, label='Leapfrog')
+        plt.plot(xv, vv, 'c.', ms=2, label='Velocity-Verlet')
+        plt.plot(xb, vb, 'm.', ms=2, label='Beeman')
+        plt.title(f'Phase Space Diagram   (h = {h})')
+        plt.xlabel('x(t)')
+        plt.ylabel('v(t)')
+        plt.legend(fontsize=8)
+        plt.grid(alpha=0.3)
+        plt.tight_layout()
+        plt.show()
+
+        _, _, _, Ee = euler(x0, v0, h, tf)
+        _, _, _, Ek = euler_kramer(x0, v0, h, tf)
+        _, _, _, El = leapfrog(x0, v0, h, tf)
+        _, _, _, Ev = verlet(x0, v0, h, tf)
+        _, _, _, Eb = beeman(x0, v0, h, tf)
+
+        plt.figure(figsize=(6, 4))
+        plt.plot(te, Ee, 'b-', lw=1, label='Euler')
+        plt.plot(tk, Ek, 'g-', lw=1, label='Euler-Cromer')
+        plt.plot(tl, El, 'y-', lw=1, label='Leapfrog')
+        plt.plot(tv, Ev, 'c-', lw=1, label='Velocity-Verlet')
+        plt.plot(tb, Eb, 'm-', lw=1, label='Beeman')
+        plt.title(f'Energy vs Time   (h = {h})')
+        plt.xlabel('t')
+        plt.ylabel('E(t)')
         plt.legend(fontsize=8)
         plt.grid(alpha=0.3)
         plt.tight_layout()
